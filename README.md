@@ -158,7 +158,7 @@ form button:hover{
 
 <section id="about" class="card">
   <h2>About</h2>
-  <p>VelCrowny бол Standoff 2 дээр төвлөрсөн cyberpunk хэв маягтай esport clan.</p>
+  <p>VelCrowne бол Standoff 2 дээр төвлөрсөн rank up хэв маягтай esport clan.</p>
 </section>
 
 <section id="members" class="card">
