@@ -165,7 +165,7 @@ form button:hover{
 <section id="members" class="card">
   <h2>Members</h2>
   <div class="members">
-    <div class="member">👑 Leader<br>VelX</div>
+    <div class="member">👑 Leader<br>Xyp3x_4k</div>
     <div class="member">⚔️ Sniper<br>Crow</div>
     <div class="member">🔥 Rusher<br>Nyx</div>
   </div>
