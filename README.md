@@ -177,9 +177,9 @@ form button:hover{
     <select>
       <option>Rank</option>
       <option>Gold</option>
-      <option>Platinum</option>
-      <option>Diamond</option>
-      <option>Legend</option>
+      <option>Phoenix</option>
+      <option>Ranger</option>
+      <option>Champion</option>
     </select>
     <button type="submit">Apply</button>
   </form>
