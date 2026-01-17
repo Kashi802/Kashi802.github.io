@@ -180,6 +180,9 @@ form button:hover{
       <option>Phoenix</option>
       <option>Ranger</option>
       <option>Champion</option>
+      <option>Master</option>
+      <option>Elite</option>
+      <option>Legend</option>
     </select>
     <button type="submit">Apply</button>
   </form>
