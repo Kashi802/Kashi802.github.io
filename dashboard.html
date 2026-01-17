@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VelCrowny | Leader Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;font-family:Segoe UI, sans-serif;background:#040611;color:#fff;}
+header{text-align:center;padding:60px 20px;}
+header h1{color:#00f6ff;}
+nav{display:flex;justify-content:center;gap:20px;padding:14px;}
+nav a{text-decoration:none;color:#00f6ff;font-weight:600;}
+nav a:hover{color:#ff00ea;}
+section{max-width:1000px;margin:auto;padding:30px 20px;}
+.request{background:#080b20;border:1px solid #00f6ff55;border-radius:14px;padding:15px;margin-bottom:12px;}
+button{margin-left:8px;padding:5px 10px;border:none;border-radius:6px;cursor:pointer;}
+button.approve{background:#00f6ff;color:#000;}
+button.reject{background:#ff00ea;color:#fff;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Leader / Co-Leader Dashboard</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="members.html">Members</a>
+  </nav>
+</header>
+
+<section id="requestsSection">
+  <h2>Pending Join Requests</h2>
+  <div id="requestsContainer"></div>
+</section>
+
+<script>
+let joinRequests = JSON.parse(localStorage.getItem('joinRequests') || '[]');
+let members = JSON.parse(localStorage.getItem('members') || '[]');
+
+function renderRequests(){
+  const container = document.getElementById('requestsContainer');
+  container.innerHTML = '';
+  joinRequests.forEach((r,i)=>{
+    if(r.status==='pending'){
+      const div = document.createElement('div');
+      div.className='request';
+      div.innerHTML = `
+        ${r.nickname} (${r.rank}) 
+        <button class="approve" onclick="approve(${i})">Approve</button>
+        <button class="reject" onclick="reject(${i})">Reject</button>
+      `;
+      container.appendChild(div);
+    }
+  });
+}
+
+function approve(i){
+  joinRequests[i].status='approved';
+  members.push({nickname:joinRequests[i].nickname, role:'Member'});
+  localStorage.setItem('members', JSON.stringify(members));
+  localStorage.setItem('joinRequests', JSON.stringify(joinRequests));
+  renderRequests();
+  alert(joinRequests[i].nickname + ' has been approved!');
+}
+
+function reject(i){
+  joinRequests[i].status='rejected';
+  localStorage.setItem('joinRequests', JSON.stringify(joinRequests));
+  renderRequests();
+}
+
+renderRequests();
+</script>
+
+</body>
+</html>
