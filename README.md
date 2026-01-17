@@ -25,13 +25,13 @@ button:hover{background:#6f00ff;color:#fff;}
 </header>
 
 <nav>
-  <a href="#about">About</a>
+  <a href="#Home">About</a>
   <a href="members.html">Members</a>
   <a href="dashboard.html">Leader Dashboard</a>
 </nav>
 
 <section id="about">
-  <h2>About VelCrowny</h2>
+  <h2>Home VelCrowny</h2>
   <p>VelCrowny бол Standoff 2 дээр төвлөрсөн rank up хэв маягтай esports clan юм. Бид багийн хамт rank up хийж, тэмцээнд оролцдог.</p>
   <a href="members.html"><button>Meet Our Members</button></a>
 </section>
