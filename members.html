@@ -2,39 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VelCrowny | Home</title>
+<title>VelCrowny | Members</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{margin:0;font-family:Segoe UI, sans-serif;background:#040611;color:#fff;}
-header{text-align:center;padding:80px 20px;}
-header h1{font-size:3rem;color:#00f6ff;}
-header p{opacity:.8;}
+header{text-align:center;padding:60px 20px;}
+header h1{font-size:2.5rem;color:#00f6ff;}
 nav{display:flex;justify-content:center;gap:20px;padding:14px;}
 nav a{text-decoration:none;color:#00f6ff;font-weight:600;}
 nav a:hover{color:#ff00ea;}
-section{max-width:900px;margin:auto;padding:40px 20px;text-align:center;}
-button{padding:15px 25px;background:#00f6ff;color:#000;border:none;border-radius:12px;font-weight:700;cursor:pointer;}
-button:hover{background:#6f00ff;color:#fff;}
+section{max-width:1000px;margin:auto;padding:30px 20px;}
+.members{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:30px;}
+.member{background:#080b20;border:1px solid #00f6ff55;border-radius:14px;padding:18px;text-align:center;}
+.member span.role{display:block;margin-top:6px;font-size:0.9rem;color:#00f6ff;}
+form input, form select{width:100%;padding:14px;margin-bottom:12px;border-radius:10px;border:none;background:#0c1025;color:#fff;}
+form button{width:100%;padding:15px;border:none;border-radius:12px;background:#00f6ff;color:#000;font-weight:700;cursor:pointer;}
+form button:hover{background:#6f00ff;color:#fff;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>VELCROWNY</h1>
-  <p>Standoff 2 | Cyberpunk Esport Clan</p>
+  <h1>VelCrowny Members</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Leader Dashboard</a>
+  </nav>
 </header>
 
-<nav>
-  <a href="#Home">About</a>
-  <a href="members.html">Members</a>
-  <a href="dashboard.html">Leader Dashboard</a>
-</nav>
-
-<section id="about">
-  <h2>About VelCrowny</h2>
-  <p>VelCrowny бол Standoff 2 дээр төвлөрсөн rank up хэв маягтай esports clan юм. Бид багийн хамт rank up хийж, тэмцээнд оролцдог.</p>
-  <a href="members.html"><button>Meet Our Members</button></a>
+<section id="members">
+  <h2>Our Clan Members</h2>
+  <div class="members" id="memberList">
+    <div class="member">👑 Xyp3x_4k <span class="role">Leader</span></div>
+    <div class="member">⚔️ Crow <span class="role">Co-Leader</span></div>
+    <div class="member">⚔️ Raven <span class="role">Co-Leader</span></div>
+    <div class="member">🔥 Nyx <span class="role">Member</span></div>
+    <div class="member">💥 Shadow <span class="role">Member</span></div>
+  </div>
 </section>
+
+<section id="join">
+  <h2>Join Our Clan</h2>
+  <form id="joinForm">
+    <input type="text" placeholder="Nickname" required>
+    <select required>
+      <option value="">Select Rank</option>
+      <option>Gold</option>
+      <option>Phoenix</option>
+      <option>Ranger</option>
+      <option>Champion</option>
+      <option>Master</option>
+      <option>Elite</option>
+      <option>Legend</option>
+    </select>
+    <button type="submit">Apply</button>
+  </form>
+</section>
+
+<script>
+// Initialize members + joinRequests in localStorage
+let members = JSON.parse(localStorage.getItem('members')) || [
+  {nickname:"Xyp3x_4k", role:"Leader"},
+  {nickname:"Crow", role:"Co-Leader"},
+  {nickname:"Raven", role:"Co-Leader"},
+  {nickname:"Nyx", role:"Member"},
+  {nickname:"Shadow", role:"Member"}
+];
+localStorage.setItem('members', JSON.stringify(members));
+
+let joinRequests = JSON.parse(localStorage.getItem('joinRequests') || '[]');
+
+// Render members dynamically
+function renderMembers(){
+  const container = document.getElementById('memberList');
+  container.innerHTML = '';
+  members.forEach(m=>{
+    const div = document.createElement('div');
+    div.className='member';
+    div.innerHTML = `${m.role === 'Leader' ? '👑' : m.role==='Co-Leader' ? '⚔️' : '🔥'} ${m.nickname} <span class="role">${m.role}</span>`;
+    container.appendChild(div);
+  });
+}
+renderMembers();
+
+// Join form submit
+document.getElementById('joinForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const nickname = this[0].value;
+  const rank = this[1].value;
+  joinRequests.push({nickname, rank, status:'pending'});
+  localStorage.setItem('joinRequests', JSON.stringify(joinRequests));
+  alert('Your request has been submitted!');
+  this.reset();
+});
+</script>
 
 </body>
 </html>
